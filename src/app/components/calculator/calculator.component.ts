@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CalculatorService } from 'src/app/services/calculator.service';
 
 @Component({
   selector: 'app-calculator',
@@ -10,7 +11,9 @@ export class CalculatorComponent implements OnInit {
   numberB: number | undefined = undefined;
   operator: string | undefined = undefined;
 
-  constructor() { }
+  constructor(
+    private calculatorSerivice: CalculatorService,
+  ) { }
 
   ngOnInit(): void {
   }
@@ -54,13 +57,17 @@ export class CalculatorComponent implements OnInit {
     if (!this.numberA || !this.numberB || !this.operator) {
       return;
     }
-    const answer = this.localCalculate(this.numberA, this.numberB, this.operator);
-    this.numberA = answer;
-    this.numberB = undefined;
-    this.operator = undefined;
-  }
 
-  localCalculate(a: number, b: number, operator: string) {
-    return new Function('return ' + `${a} ${operator} ${b}`)();
+    const { numberA, numberB, operator } = this;
+
+    this.calculatorSerivice.calculate({
+      numberA,
+      numberB,
+      operator
+    }).subscribe(answer => {
+      this.numberA = answer;
+      this.numberB = undefined;
+      this.operator = undefined;
+    })
   }
 }

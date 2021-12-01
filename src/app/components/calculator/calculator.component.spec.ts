@@ -2,14 +2,18 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { CalculatorComponent } from './calculator.component';
+import { CalculatorService } from '../../services/calculator.service';
+import { of } from 'rxjs';
 
 describe('CalculatorComponent', () => {
   let component: CalculatorComponent;
   let fixture: ComponentFixture<CalculatorComponent>;
+  const calculatorService = jasmine.createSpyObj('CalculatorService', ['calculate']);
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ CalculatorComponent ],
+      providers: [{provide: CalculatorService, useValue: calculatorService}]
     })
     .compileComponents();
   });
@@ -72,6 +76,8 @@ describe('CalculatorComponent', () => {
   });
 
   it('should automaticly calculate if operator is pressed for a second time', () => {
+    calculatorService.calculate.and.returnValue(of(3));
+
     component.pressNumber(5);
     component.pressOperator("-");
     component.pressNumber(2);
