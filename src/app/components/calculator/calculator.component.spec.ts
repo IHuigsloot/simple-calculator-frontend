@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 import { CalculatorComponent } from './calculator.component';
 import { CalculatorService } from '../../services/calculator.service';
 import { of } from 'rxjs';
+import { Calculation } from 'src/app/types/Calculation';
 
 describe('CalculatorComponent', () => {
   let component: CalculatorComponent;
@@ -21,7 +22,6 @@ describe('CalculatorComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CalculatorComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
@@ -29,6 +29,7 @@ describe('CalculatorComponent', () => {
   });
 
   it('Should render an initial output of 0', () => {
+    fixture.detectChanges();
     const outputElement = fixture.debugElement.query(By.css('.calculator__output'))
     expect(outputElement.nativeElement.innerHTML).toEqual('0');
   });
@@ -76,7 +77,14 @@ describe('CalculatorComponent', () => {
   });
 
   it('should automaticly calculate if operator is pressed for a second time', () => {
-    calculatorService.calculate.and.returnValue(of(3));
+    const returnValue: Calculation = {
+      id: 1,
+      numberA: 1,
+      numberB: 2,
+      operator: "+",
+      answer: 3
+    }
+    calculatorService.calculate.and.returnValue(of(returnValue));
 
     component.pressNumber(5);
     component.pressOperator("-");

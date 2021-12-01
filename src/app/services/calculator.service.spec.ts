@@ -30,13 +30,14 @@ describe('CalculatorService', () => {
     }
 
     const expectedResult: number = 10;
-    let result: number = 0;
-    service.calculate(request).subscribe(res => result = res);
+    service.calculate(request).subscribe(res => {
+      if (res.answer) {
+        expect(res.answer).toEqual(expectedResult);
+      }
+    });
     tick();
 
     const req = httpMock.expectOne({ url: `${backend_url}/`, method: 'POST'});
     req.flush(expectedResult);
-
-    expect(result).toEqual(expectedResult);
   }));
 });

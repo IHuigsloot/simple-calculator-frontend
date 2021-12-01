@@ -42,9 +42,10 @@ export class CalculatorComponent implements OnInit {
     }
 
     if (this.operator) {
-      this.calculate();
+      this.calculate(operator);
+    } else {
+      this.operator = operator;
     }
-    this.operator = operator;
   }
 
   clear(): void {
@@ -53,21 +54,21 @@ export class CalculatorComponent implements OnInit {
     this.operator = undefined;
   }
 
-  calculate(): void {
+  calculate(newOperator?: string) {
     if (!this.numberA || !this.numberB || !this.operator) {
       return;
     }
 
     const { numberA, numberB, operator } = this;
 
-    this.calculatorSerivice.calculate({
+    return this.calculatorSerivice.calculate({
       numberA,
       numberB,
       operator
     }).subscribe(answer => {
-      this.numberA = answer;
+      this.numberA = answer.answer;
       this.numberB = undefined;
-      this.operator = undefined;
-    })
+      this.operator = newOperator ?? undefined;
+    });
   }
 }
