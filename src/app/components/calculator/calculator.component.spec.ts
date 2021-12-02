@@ -76,7 +76,7 @@ describe('CalculatorComponent', () => {
     expect(component.calculatorOutput).toEqual('64 + 5');
   });
 
-  it('should automaticly calculate if operator is pressed for a second time', () => {
+  it('should automaticly calculate and clear if operator is pressed for a second time', () => {
     const returnValue: Calculation = {
       id: 1,
       numberA: 1,
@@ -94,9 +94,11 @@ describe('CalculatorComponent', () => {
 
     component.pressOperator('+');
 
-    expect(component.calculatorOutput).toEqual('3 +');
+    expect(component.calculatorOutput).toEqual('0');
+
+    expect(component.numberA).toEqual(undefined);
     expect(component.numberB).toEqual(undefined);
-    expect(component.operator).toEqual("+")
+    expect(component.operator).toEqual(undefined);
   });
 
   it('should clear all values if clear is pressed', () => {

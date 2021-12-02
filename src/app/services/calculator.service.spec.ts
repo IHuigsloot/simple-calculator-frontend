@@ -39,5 +39,7 @@ describe('CalculatorService', () => {
 
     const req = httpMock.expectOne({ url: `${backend_url}/`, method: 'POST'});
     req.flush(expectedResult);
+
+    httpMock.verify();
   }));
 });

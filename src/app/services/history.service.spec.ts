@@ -58,5 +58,7 @@ describe('HistoryService', () => {
 
     const req = httpMock.expectOne({ url: `${backend_url}/history`, method: 'GET'});
     req.flush(expectedResult);
+
+    httpMock.verify();
   }));
 });

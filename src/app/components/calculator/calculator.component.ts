@@ -42,7 +42,7 @@ export class CalculatorComponent implements OnInit {
     }
 
     if (this.operator) {
-      this.calculate(operator);
+      this.calculate();
     } else {
       this.operator = operator;
     }
@@ -54,7 +54,7 @@ export class CalculatorComponent implements OnInit {
     this.operator = undefined;
   }
 
-  calculate(newOperator?: string) {
+  calculate() {
     if (!this.numberA || !this.numberB || !this.operator) {
       return;
     }
@@ -66,9 +66,7 @@ export class CalculatorComponent implements OnInit {
       numberB,
       operator
     }).subscribe(answer => {
-      this.numberA = answer.answer;
-      this.numberB = undefined;
-      this.operator = newOperator ?? undefined;
+      this.clear();
     });
   }
 }
