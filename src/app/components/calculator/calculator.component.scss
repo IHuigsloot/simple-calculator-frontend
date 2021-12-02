@@ -1,6 +1,7 @@
 .calculator {
-  width: 400px;
-  height: 100%;
+  width: 300px;
+  box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
 
   &__output {
     background-color: #333;
@@ -8,22 +9,47 @@
     width: 100%;
     text-align: right;
     padding: 8px 16px;
-    font-size: 1.6em;
+    font-size: 3em;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
   }
 
   &__keys {
     display: grid;
     grid-gap: 2px;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
 
     button {
       border: 0;
-      padding: 1rem;
-      background-color: lightgray;
+      padding: 2rem 1rem;
+      font-size: 1.3em;
+      background-color: #e4e7eb;
       cursor: pointer;
 
       &:hover {
-        background-color: grey;
+        background-color: #cbd2d9;
+      }
+
+      &.operator {
+        background-color: #cbd2d9;
+        &:hover {
+          background-color: #9aa5b1;
+        }
+      }
+
+      &.clear {
+        background-color: #ff2f2f;
+        &:hover {
+          background-color: #c72121;
+        }
+      }
+      &.calc {
+        background-color: #ffa41c;
+        &:hover {
+          background-color: #d88d1b;
+        }
       }
     }
   }

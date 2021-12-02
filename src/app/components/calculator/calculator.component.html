@@ -4,21 +4,21 @@
     <button (click)="pressNumber(7)">7</button>
     <button (click)="pressNumber(8)">8</button>
     <button (click)="pressNumber(9)">9</button>
-    <button (click)="pressOperator('+')">+</button>
+    <button class="operator" (click)="pressOperator('+')">+</button>
 
     <button (click)="pressNumber(4)">4</button>
     <button (click)="pressNumber(5)">5</button>
     <button (click)="pressNumber(6)">6</button>
-    <button (click)="pressOperator('-')">-</button>
+    <button class="operator" (click)="pressOperator('-')">-</button>
 
     <button (click)="pressNumber(1)">1</button>
     <button (click)="pressNumber(2)">2</button>
     <button (click)="pressNumber(3)">3</button>
-    <button (click)="pressOperator('*')">*</button>
+    <button class="operator" (click)="pressOperator('*')">*</button>
 
-    <button (click)="clear()">C</button>
+    <button class="clear" (click)="clear()">C</button>
     <button (click)="pressNumber(0)">0</button>
-    <button (click)="calculate()">=</button>
-    <button (click)="pressOperator('/')">/</button>
+    <button class="calc" (click)="calculate()">=</button>
+    <button class="operator" (click)="pressOperator('/')">/</button>
   </div>
 </div>

@@ -2,7 +2,7 @@
   <div class="history__header">
     History
   </div>
-  <div class="history__items">
+  <div class="history__items" #historyElement>
     <div class="history__item" *ngFor="let item of history">
       <span class="history__item--equation">{{ item.numberA }} {{ item.operator }} {{ item.numberB }}</span>
       <span class="history__item--answer"> = {{ item.answer }}</span>
